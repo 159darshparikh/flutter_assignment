@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 
-import '/core/model/rocket.model.dart';
+import '/core/model/local_model.dart';
 import '/utils/responsive/responsive.dart';
+import '/core/helper/database/database_helper.dart';
 
 class RocketWidget extends StatelessWidget {
-  final List<RocketModel> rocketData;
+  final List<Local> rocketData;
   final Function({required String id}) onTapRocket;
+  final DatabaseHelper databaseHelper;
   const RocketWidget({
     super.key,
     required this.rocketData,
     required this.onTapRocket,
+    required this.databaseHelper,
   });
 
   @override
@@ -28,7 +31,9 @@ class RocketWidget extends StatelessWidget {
           final data = rocketData[index];
           return GestureDetector(
             behavior: HitTestBehavior.translucent,
-            onTap: () => onTapRocket(id: data.id!),
+            onTap: () => onTapRocket(
+              id: data.id!,
+            ),
             child: Container(
               margin: EdgeInsets.all(15.s),
               padding: EdgeInsets.all(10.s),
@@ -50,14 +55,14 @@ class RocketWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        data.name!,
+                        data.rocketName!,
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 16.f,
                         ),
                       ),
                       Text(
-                        data.engines!.number!.toString(),
+                        data.rocketEnginesNumber!.toString(),
                         style: TextStyle(
                           fontSize: 14.f,
                         ),

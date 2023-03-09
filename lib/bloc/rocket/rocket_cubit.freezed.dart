@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Rocket {
   GetRocket get getRocket => throw _privateConstructorUsedError;
   List<RocketModel> get rocketData => throw _privateConstructorUsedError;
+  List<Local> get localData => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RocketCopyWith<Rocket> get copyWith => throw _privateConstructorUsedError;
@@ -28,7 +29,10 @@ abstract class $RocketCopyWith<$Res> {
   factory $RocketCopyWith(Rocket value, $Res Function(Rocket) then) =
       _$RocketCopyWithImpl<$Res, Rocket>;
   @useResult
-  $Res call({GetRocket getRocket, List<RocketModel> rocketData});
+  $Res call(
+      {GetRocket getRocket,
+      List<RocketModel> rocketData,
+      List<Local> localData});
 
   $GetRocketCopyWith<$Res> get getRocket;
 }
@@ -48,6 +52,7 @@ class _$RocketCopyWithImpl<$Res, $Val extends Rocket>
   $Res call({
     Object? getRocket = null,
     Object? rocketData = null,
+    Object? localData = null,
   }) {
     return _then(_value.copyWith(
       getRocket: null == getRocket
@@ -58,6 +63,10 @@ class _$RocketCopyWithImpl<$Res, $Val extends Rocket>
           ? _value.rocketData
           : rocketData // ignore: cast_nullable_to_non_nullable
               as List<RocketModel>,
+      localData: null == localData
+          ? _value.localData
+          : localData // ignore: cast_nullable_to_non_nullable
+              as List<Local>,
     ) as $Val);
   }
 
@@ -76,7 +85,10 @@ abstract class _$$_RocketCopyWith<$Res> implements $RocketCopyWith<$Res> {
       __$$_RocketCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({GetRocket getRocket, List<RocketModel> rocketData});
+  $Res call(
+      {GetRocket getRocket,
+      List<RocketModel> rocketData,
+      List<Local> localData});
 
   @override
   $GetRocketCopyWith<$Res> get getRocket;
@@ -94,6 +106,7 @@ class __$$_RocketCopyWithImpl<$Res>
   $Res call({
     Object? getRocket = null,
     Object? rocketData = null,
+    Object? localData = null,
   }) {
     return _then(_$_Rocket(
       getRocket: null == getRocket
@@ -104,6 +117,10 @@ class __$$_RocketCopyWithImpl<$Res>
           ? _value._rocketData
           : rocketData // ignore: cast_nullable_to_non_nullable
               as List<RocketModel>,
+      localData: null == localData
+          ? _value._localData
+          : localData // ignore: cast_nullable_to_non_nullable
+              as List<Local>,
     ));
   }
 }
@@ -112,8 +129,11 @@ class __$$_RocketCopyWithImpl<$Res>
 
 class _$_Rocket implements _Rocket {
   const _$_Rocket(
-      {required this.getRocket, required final List<RocketModel> rocketData})
-      : _rocketData = rocketData;
+      {required this.getRocket,
+      required final List<RocketModel> rocketData,
+      required final List<Local> localData})
+      : _rocketData = rocketData,
+        _localData = localData;
 
   @override
   final GetRocket getRocket;
@@ -125,9 +145,17 @@ class _$_Rocket implements _Rocket {
     return EqualUnmodifiableListView(_rocketData);
   }
 
+  final List<Local> _localData;
+  @override
+  List<Local> get localData {
+    if (_localData is EqualUnmodifiableListView) return _localData;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_localData);
+  }
+
   @override
   String toString() {
-    return 'Rocket(getRocket: $getRocket, rocketData: $rocketData)';
+    return 'Rocket(getRocket: $getRocket, rocketData: $rocketData, localData: $localData)';
   }
 
   @override
@@ -138,12 +166,17 @@ class _$_Rocket implements _Rocket {
             (identical(other.getRocket, getRocket) ||
                 other.getRocket == getRocket) &&
             const DeepCollectionEquality()
-                .equals(other._rocketData, _rocketData));
+                .equals(other._rocketData, _rocketData) &&
+            const DeepCollectionEquality()
+                .equals(other._localData, _localData));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, getRocket, const DeepCollectionEquality().hash(_rocketData));
+      runtimeType,
+      getRocket,
+      const DeepCollectionEquality().hash(_rocketData),
+      const DeepCollectionEquality().hash(_localData));
 
   @JsonKey(ignore: true)
   @override
@@ -155,12 +188,15 @@ class _$_Rocket implements _Rocket {
 abstract class _Rocket implements Rocket {
   const factory _Rocket(
       {required final GetRocket getRocket,
-      required final List<RocketModel> rocketData}) = _$_Rocket;
+      required final List<RocketModel> rocketData,
+      required final List<Local> localData}) = _$_Rocket;
 
   @override
   GetRocket get getRocket;
   @override
   List<RocketModel> get rocketData;
+  @override
+  List<Local> get localData;
   @override
   @JsonKey(ignore: true)
   _$$_RocketCopyWith<_$_Rocket> get copyWith =>

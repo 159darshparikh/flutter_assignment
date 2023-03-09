@@ -5,11 +5,13 @@ class Rocket with _$Rocket {
   const factory Rocket({
     required GetRocket getRocket,
     required List<RocketModel> rocketData,
+    required List<Local> localData,
   }) = _Rocket;
 
   factory Rocket.initial() => const Rocket(
         getRocket: GetRocket.initial(),
         rocketData: [],
+        localData: [],
       );
 }
 

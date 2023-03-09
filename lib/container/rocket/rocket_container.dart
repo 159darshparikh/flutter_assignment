@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '/bloc/rocket/rocket_cubit.dart';
+import '/core/helper/database/database_helper.dart';
 import '/presentation/widgets/rocket/rocket_widget.dart';
 import '/presentation/screens/rocket_details/rocket_details.dart';
 import '/presentation/widgets/common/common_loader/common_loader.dart';
@@ -14,10 +15,18 @@ class ReocketContainer extends StatefulWidget {
 }
 
 class _ReocketContainerState extends State<ReocketContainer> {
+  final dbHelper = DatabaseHelper();
+  late RocketCubit rocketCubit;
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<RocketCubit>(context).getRocketData();
+    rocketCubit = BlocProvider.of<RocketCubit>(context);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await dbHelper.init();
+      rocketCubit.getRocketData(
+        databaseHelper: dbHelper,
+      );
+    });
   }
 
   void onTapRocket({required String id}) {
@@ -41,8 +50,9 @@ class _ReocketContainerState extends State<ReocketContainer> {
             ),
           ),
           success: () => RocketWidget(
-            rocketData: state.rocketData,
+            rocketData: state.localData,
             onTapRocket: onTapRocket,
+            databaseHelper: dbHelper,
           ),
         );
       },
